@@ -1,0 +1,25 @@
+!!!
+%html
+	%head
+		/%script(src="/js/bootstrap.min.js")
+		%script(src="/js/jquery.min.js")
+		%link(rel="stylesheet" href="/css/bootstrap-responsive.css")
+		%link(rel="stylesheet" href="/css/bootstrap.css")
+		%link(rel="stylesheet" href="/style.css")		
+	%body
+		%section#navigation
+			%div.topbar-wrapper(style="z-index:5")
+				%div.topbar(data-dropdown="dropdown")
+				%div.container
+					%h3
+						%a(href="/")
+							Magic Thing
+					%ul.nav
+						%li
+							%a(href="/")
+								Home
+		%div.container
+			-if @error then
+				%div.alert-error
+					=@error
+			=yield

@@ -1,0 +1,34 @@
+%h1
+	Hello!
+
+%br	
+%div.row
+	%div.span6
+		%form.upload_form{:action=>"/build",:method=>"post",:enctype=>"multipart/form-data", :onsubmit=>'return get_status()'}
+			%input{:type=>"file",:name=>"file"}
+			%br
+			%label
+				Image URL
+				%input(type="text" name="url" value="#{session[:url]}")
+			%br
+			-if(@fields)
+				-@fields.each do |f|
+					-name = f[0]
+					-desc = f[1]
+					-default = f[2] || 0
+					%label
+						= desc
+					%input(type="text" name="#{name}" value="#{session[name] || default}" style="display: block;width:20px")
+			%br
+			%input.btn-large.btn.btn-primary{:type=>"submit",:value=>"Build"}
+		#status
+		:javascript
+			function get_status(){
+				if(document.forms[0].elements['file'].value == "" && document.forms[0].elements['url'].value == ""){
+					return false;
+				}
+				
+			//someday... use the "/status" URL to show the current status/progress of the analysis
+			//setTimeout($('#status').load('))
+			//alert('ok');
+			}
